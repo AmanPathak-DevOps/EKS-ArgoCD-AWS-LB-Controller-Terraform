@@ -16,11 +16,11 @@ private-rt-name       = "private-route-table"
 eip-name              = "elasticip-ngw"
 ngw-name              = "ngw"
 eks-sg                = "eks-sg"
-ec2-sg = "ec2-sg"
+ec2-sg                = "ec2-sg"
 
 # EKS
 is-eks-cluster-enabled     = true
-cluster-version            = "1.29" 
+cluster-version            = "1.29"
 cluster-name               = "eks-cluster"
 endpoint-private-access    = true
 endpoint-public-access     = false
@@ -53,8 +53,8 @@ addons = [
 ]
 
 # IAM 
-ec2-iam-role = "ec2-ssm-role"
-ec2-iam-role-policy = "ec2-ssm-role-policy"
+ec2-iam-role             = "ec2-ssm-role"
+ec2-iam-role-policy      = "ec2-ssm-role-policy"
 ec2-iam-instance-profile = "ec2-ssm-instance-profile"
 
 # EC2

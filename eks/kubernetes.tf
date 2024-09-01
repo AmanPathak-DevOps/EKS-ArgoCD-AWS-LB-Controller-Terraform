@@ -1,4 +1,4 @@
-resource "aws_iam_role" "example" {
+resource "aws_iam_role" "lb-controller-role" {
   name        = "example"
   description = "EKS service account role"
 
@@ -55,28 +55,28 @@ resource "aws_iam_policy" "load_balancer_controller" {
           "elasticloadbalancing:DescribeTags"
         ]
         Resource = "*"
-        Effect    = "Allow"
+        Effect   = "Allow"
       }
     ]
   })
 }
 
-resource "aws_iam_role_policy_attachment" "example" {
-  role       = aws_iam_role.example.name
+resource "aws_iam_role_policy_attachment" "lb-controller-policy-attachment" {
+  role       = aws_iam_role.lb-controller-role.name
   policy_arn = aws_iam_policy.load_balancer_controller.arn
 }
 
 # Create the service account
-resource "kubernetes_service_account" "example" {
+resource "kubernetes_service_account" "lb-controller" {
   metadata {
     name      = "aws-load-balancer-controller"
     namespace = "default"
     annotations = {
-      "eks.amazonaws.com/role-arn" = aws_iam_role.example.arn
+      "eks.amazonaws.com/role-arn" = aws_iam_role.lb-controller-role.arn
     }
   }
 
   depends_on = [
-    aws_iam_role_policy_attachment.example,
+    aws_iam_role_policy_attachment.lb-controller-policy-attachment,
   ]
 }
