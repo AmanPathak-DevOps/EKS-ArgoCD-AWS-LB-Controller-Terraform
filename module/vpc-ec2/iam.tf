@@ -38,7 +38,17 @@ resource "aws_iam_role_policy" "iam-role-policy" {
           "ssm:PutConfigurePackageResult",
           "ssm:UpdateAssociationStatus",
           "ssm:UpdateInstanceAssociationStatus",
-          "ssm:UpdateInstanceInformation"
+          "ssm:UpdateInstanceInformation",
+          "ssmmessages:CreateControlChannel",
+          "ssmmessages:CreateDataChannel",
+          "ssmmessages:OpenControlChannel",
+          "ssmmessages:OpenDataChannel",
+          "ec2messages:AcknowledgeMessage",
+          "ec2messages:DeleteMessage",
+          "ec2messages:FailMessage",
+          "ec2messages:GetEndpoint",
+          "ec2messages:GetMessages",
+          "ec2messages:SendReply"
         ]
         Effect   = "Allow"
         Resource = "*"
