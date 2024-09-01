@@ -1,3 +1,8 @@
+locals {
+  org = "medium"
+  env = "dev"
+}
+
 data "aws_eks_cluster" "eks-cluster" {
   name = "${local.env}-${local.org}-${var.cluster-name}"
 
